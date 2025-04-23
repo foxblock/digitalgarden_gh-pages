@@ -10,7 +10,12 @@ updates:
     schedule:
       interval: "weekly"
     ignore:
+      # For slugify, ignore all updates.
       - dependency-name: "@sindresorhus/slugify"
-        # For slugify, ignore all updates.
+      # 11ty v3.x complains about monkey patched code being incompatible with new async stuff
+      # see https://github.com/foxblock/digitalgarden_gh-pages/pull/5
+      - dependency-name: "@11ty/eleventy"
+        versions: [ ">=3.0.0" ]
+      # Depends on eleventy v3.x
       - dependency-name: "@11ty/eleventy-plugin-rss"
-        versions: [ "^1.2.0" ]
+        versions: [ ">=1.2.0" ]

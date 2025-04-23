@@ -49,9 +49,11 @@ GitHub allows embedding a comment feature into your site by using a plugin calle
 5. Create a new file in your repo at `src/site/_includes/components/user/notes/footer/comment.njk`
     - you can do this on GitHub in your browser with the `Create new file` feature, just copy the above path to the filename input box
 ![add-file](https://github.com/user-attachments/assets/a944ad35-240b-46fd-b75a-c1271b17a95f)
-1. Copy the generated `<script>` code into this new file and push it to your repository
+1. Copy the generated `<script>` code into this new file and commit/push it to your repository
 ![add-comment](https://github.com/user-attachments/assets/39f813dc-947f-4eb1-952f-2d48ba298077)
 1. This will embed the comment widgit in the footer of all of your notes. If you want to place it in a different location or have comments also or only on your homepage, see the documentation on [custom components](https://dg-docs.ole.dev/advanced/adding-custom-components/).
+
+Example:  
 ![comments](https://github.com/user-attachments/assets/5e1ef092-6959-4ec0-a931-aa1041607b69)
 
 ## Docs

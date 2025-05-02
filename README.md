@@ -27,7 +27,7 @@ Libraries have also been updated to more recent versions. If there is any proble
 Because you are working from a fork of the original template, you cannot use the "Update template" feature of the Obisdian plugin - it would overwrite some of the changes made.
 ![update-template](https://github.com/user-attachments/assets/4f912307-ee1e-4b7c-962d-f88bb0eaeb31)
 
-For library updates you can enable the [dependabot feature](https://docs.github.com/en/code-security/getting-started/dependabot-quickstart-guide). Just watch for any auto-generated pull requests, after you do.
+For library updates the [dependabot feature](https://docs.github.com/en/code-security/getting-started/dependabot-quickstart-guide#enabling-dependabot-for-your-repository) is enabled by default. It will run once a week and create pull requests for library updates. Note that not all updates might be compatible and can break things. Check the actions tab for any errors during deployment after you apply updates. Also note that security alerts are disabled by default, you can enable them in the settings (see above link).
 
 For any other update to the template you sadly will have to manually check for it and copy them over to your repository.
 

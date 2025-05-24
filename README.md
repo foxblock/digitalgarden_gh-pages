@@ -73,6 +73,11 @@ GitHub allows embedding a comment feature into your site by using a plugin calle
 Example:  
 ![comments](https://github.com/user-attachments/assets/5e1ef092-6959-4ec0-a931-aa1041607b69)
 
+## Theme switcher / previewer
+Chosing the right theme is very tedious by default. You have to select the theme in the Obsidian plugin settings and wait for the site to update and deploy, which might take a minute or two.
+
+To streamline this process I made a script to preview a theme before applying it. See the following link on how to add it to your site: https://github.com/oleeskild/obsidian-digital-garden/discussions/688
+
 ## Docs
 Docs for authoring and customizing the plugin and site are available at [dg-docs.ole.dev](https://dg-docs.ole.dev/)
 

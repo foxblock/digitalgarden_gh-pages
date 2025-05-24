@@ -31,6 +31,22 @@ For library updates the [dependabot feature](https://docs.github.com/en/code-sec
 
 For any other update to the template you sadly will have to manually check for it and copy them over to your repository.
 
+## Custom domain
+To set a custom domain, edit the `.github/workflows/build.yml` file and add `cname: yourdomain.com` to the last block (deploy parameters).  
+It should look like this:
+```YAML
+      ...
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v4
+        if: github.ref == 'refs/heads/main'
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist
+          cname: yourdomain.com
+```
+After pushing, the domain should also show up in Settings > Pages > Custom domain and undergo DNS checking.  
+Here is the official guide on how to set it up: https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/managing-a-custom-domain-for-your-github-pages-site (ignore steps 1 through 4 of the "Configuring an apex domain" chapter. If you set your domain in the repo settings manually, it will be reset the next time you push any changes).
+
 ## Comments
 GitHub allows embedding a comment feature into your site by using a plugin called Giscus. Giscus basically embeds single threads from the GitHub Discussions feature into your site. The setup is fairly straightforward:
 

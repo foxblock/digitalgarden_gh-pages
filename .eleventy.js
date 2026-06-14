@@ -91,7 +91,10 @@ function getAnchorAttributes(filePath, linkTitle) {
   }
 }
 
-const tagRegex = /(^|\s|\>)(#[^\s!@#$%^&*()=+\.,\[{\]};:'"?><]+)(?!([^<]*>))/g;
+// NOTE (JS, 24.05.25): Edited this to only match double hashes in the markdown file (e.g. ##test-tag)
+// This is a workaround for https://github.com/issues/created?issue=oleeskild%7Cdigitalgarden%7C315
+// Tags as properties are unaffected
+const tagRegex = /(^|\s|\>)(##[^\s!@#$%^&*()=+\.,\[{\]};:'"?><]+)(?!([^<]*>))/g;
 
 module.exports = function (eleventyConfig) {
   eleventyConfig.setLiquidOptions({
@@ -274,6 +277,9 @@ module.exports = function (eleventyConfig) {
     return date && date.toISOString();
   });
 
+  // NOTE (JS, 28.05.25): This is called 4x:
+  // - 3x with rendered HTML content of the site (str starting after the header tag)
+  // - 1x with a raw text version of the content (no markdown)
   eleventyConfig.addFilter("link", function (str) {
     return (
       str &&
@@ -289,11 +295,13 @@ module.exports = function (eleventyConfig) {
     );
   });
 
+  // NOTE (JS, 24.05.25): Edited taggify and searchableTags to only work with double-hashed
+  // tags (e.g. ##tag-test) as a workaround. See comment on tagRegex above for more info
   eleventyConfig.addFilter("taggify", function (str) {
     return (
       str &&
-      str.replace(tagRegex, function (match, precede, tag) {
-        return `${precede}<a class="tag" onclick="toggleTagSearch(this)" data-content="${tag}">${tag}</a>`;
+      str.replace(tagRegex, function (match, precede, tag, whatev, offset, fullStr) {
+        return `${precede}<a class="tag" onclick="toggleTagSearch(this)" data-content="${tag.substring(1)}">${tag.substring(1)}</a>`;
       })
     );
   });
@@ -301,10 +309,11 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addFilter("searchableTags", function (str) {
     let tags;
     let match = str && str.match(tagRegex);
+    // TODO: Tags are not de-duplicated
     if (match) {
       tags = match
         .map((m) => {
-          return `"${m.split("#")[1]}"`;
+          return `"${m.split("##")[1]}"`;
         })
         .join(", ");
     }
@@ -324,6 +333,10 @@ module.exports = function (eleventyConfig) {
     );
   });
 
+  // NOTE (JS, 28.05.25): This is called 3x (str contains full file content):
+  // - for each rendered html file
+  // - for the XML feed file 
+  // - for a json array of all posts (probably for the search)
   eleventyConfig.addTransform("dataview-js-links", function (str) {
     const parsed = parse(str);
     for (const dataViewJsLink of parsed.querySelectorAll("a[data-href].internal-link")) {

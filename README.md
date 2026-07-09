@@ -1,4 +1,13 @@
 # Digital Obsidian Garden + GitHub Pages
+
+## Note about archival
+Maintaining this fork is a chore. Web-dev stuff is coded so flakey and bug-prone. There are vulnerabilities every other day. Just keeping up with package updates is a whole job. I do not feel like investing more time into this.
+
+The official template went through a lot of changes. Many fixes (though not all) applied by this fork are now baseline, so I suggest you just use the main template. I updated my own page to the new version, so you can also look there for guidance: https://github.com/foxblock/foxblock.github.io/
+
+If you want to add special features of this template to the official template, you can still follow the guides in this readme.
+
+## About
 This is the template to be used together with the [Digital Garden Obsidian Plugin](https://github.com/oleeskild/Obsidian-Digital-Garden).
 
 Rendering and deployment is done via [GitHub Pages](https://pages.github.com/). So you can use the GitHub account and repository you need anyway to fully deploy your site (no Vercel, Netlify, Docker, etc. needed).
